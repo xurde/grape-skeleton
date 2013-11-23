@@ -1,6 +1,7 @@
 # External dependencies
 require 'grape'
 require 'json'
+require 'active_record'
 
 require 'api/sample_endpoint'
 
