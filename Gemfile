@@ -10,6 +10,8 @@ gem 'rake'
 gem 'racksh'
 gem 'sqlite3'
 gem 'thin'
+gem 'warden'
+gem 'devise'
 
 group :development do
   gem 'rerun'

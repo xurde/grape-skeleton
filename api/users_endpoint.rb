@@ -2,9 +2,24 @@ module API
 
   class UsersEndpoint < Grape::API
 
+    #helpers Api::Helpers::Warden
+
     namespace :users do
+
       get 'foo' do
         {foo: 'bar'}
+      end
+
+      namespace :auth do
+
+        post do
+          {conichi_token: 'XXXXXXXXXXXXXXXXXXX'}
+        end
+
+        get do
+          {user: current_user}
+        end
+
       end
     end
 

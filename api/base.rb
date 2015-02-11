@@ -17,7 +17,7 @@ module API
     format :json
     cascade false
     content_type :json, CONTENT_TYPE
-    # version :v1
+    version :v1
 
     rescue_from Grape::Exceptions::Validation do |e|
       Rack::Response.new({ message: e.message }.to_json, 412, RACK_CONTENT_TYPE_HEADER).finish
@@ -26,6 +26,28 @@ module API
     rescue_from ActiveRecord::RecordNotFound do |e|
       Rack::Response.new({ message: "The item you are looking for does not exist."}.to_json, 404, RACK_CONTENT_TYPE_HEADER).finish
     end
+
+
+    helpers do
+
+      def current_user
+        @current_user ||= User.authorize!(env)
+      end
+
+      def authenticate!
+        error!('401 Unauthorized', 401) unless current_user
+      end
+
+      def authenticated
+        current_user
+      end
+
+    end
+
+    before do
+      error!("401 Unauthorized", 401) unless authenticated
+    end
+
 
     get 'status' do
       {status: 'ok'}
