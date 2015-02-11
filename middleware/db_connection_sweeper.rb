@@ -1,5 +1,7 @@
 module Middleware
+
   class DBConnectionSweeper
+
     def initialize(app)
       @app = app
     end
@@ -10,5 +12,6 @@ module Middleware
       ActiveRecord::Base.clear_active_connections!
       response
     end
+    
   end
 end

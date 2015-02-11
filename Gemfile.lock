@@ -76,6 +76,9 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.6.2)
       rack (>= 1.0)
+    racksh (1.0.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5)
     rake (10.1.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.1)
@@ -129,6 +132,7 @@ DEPENDENCIES
   pry
   pry-nav
   rack-test
+  racksh
   rake
   rerun
   roar

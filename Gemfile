@@ -7,6 +7,7 @@ gem 'activerecord', '~> 4.0.0'      # Database
 gem 'roar'                          # Representer
 gem 'foreman'                       # Process management
 gem 'rake'
+gem 'racksh'
 gem 'sqlite3'
 gem 'thin'
 
