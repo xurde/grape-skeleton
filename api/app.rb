@@ -7,17 +7,16 @@ require 'api/users_endpoint'
 
 module API
 
-  class Base < Grape::API
+  class App < Grape::API
 
     CONTENT_TYPE = "application/hal+json"
     RACK_CONTENT_TYPE_HEADER = {"content-type" => CONTENT_TYPE}
     HTTP_STATUS_CODES = Rack::Utils::HTTP_STATUS_CODES.invert
-    version 'v1', :using => :path
 
     format :json
-    cascade false
+    version 'v0', :using => :path
     content_type :json, CONTENT_TYPE
-    version :v1
+    prefix 'api'
 
     rescue_from Grape::Exceptions::Validation do |e|
       Rack::Response.new({ message: e.message }.to_json, 412, RACK_CONTENT_TYPE_HEADER).finish
@@ -45,7 +44,11 @@ module API
     end
 
     before do
-      error!("401 Unauthorized", 401) unless authenticated
+      # error!("401 Unauthorized", 401) unless authenticated
+    end
+
+    get '/' do
+      {routes: API::App.routes.map}
     end
 
 
@@ -53,7 +56,16 @@ module API
       {status: 'ok'}
     end
 
-    # Mount your api classes here
+    desc "Just ping"
+    resource :ping do
+      desc "Returns Pong"
+      get '/' do
+        {pong: true}
+      end
+    end
+
+    # Mount other api modules here
+
     mount API::UsersEndpoint
 
   end

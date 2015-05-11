@@ -5,7 +5,7 @@ end
 $LOAD_PATH << load_path(".")
 $LOAD_PATH << load_path("./lib")
 
-require 'api/base'
+require 'api/app'
 require 'middleware/db_connection_sweeper'
 require 'middleware/logger'
 require 'logger'

@@ -5,4 +5,5 @@ use Middleware::Logger, $logger
 use Middleware::DBConnectionSweeper
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
-run API::Base
+# mount API::App
+run API::App

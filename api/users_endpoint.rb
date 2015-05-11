@@ -2,7 +2,7 @@ module API
 
   class UsersEndpoint < Grape::API
 
-    #helpers Api::Helpers::Warden
+    # helpers Api::Helpers::Warden
 
     namespace :users do
 
@@ -13,7 +13,7 @@ module API
       namespace :auth do
 
         post do
-          {conichi_token: 'XXXXXXXXXXXXXXXXXXX'}
+          {user_token: 'XXXXXXXXXXXXXXXXXXX'}
         end
 
         get do

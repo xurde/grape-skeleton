@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #         :trackable,
   #         :validatable
 
-  attr_accessible :name, :email, :authentication_token
+  # attr_accessible :name, :email, :authentication_token
   before_save :ensure_authentication_token
 
   def ensure_authentication_token

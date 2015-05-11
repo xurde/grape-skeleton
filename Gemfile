@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 # Basic service gems
-gem 'grape'                         # API Framework
 gem 'json'                          # JSON
 gem 'activerecord', '~> 4.0.0'      # Database
 gem 'roar'                          # Representer
@@ -10,8 +9,13 @@ gem 'rake'
 gem 'racksh'
 gem 'sqlite3'
 gem 'thin'
+
+# Auth
 gem 'warden'
 gem 'devise'
+
+# Grape Framework
+gem 'grape'
 
 group :development do
   gem 'rerun'
@@ -24,7 +28,6 @@ group :test do
   gem 'bogus'
   gem 'database_cleaner'
   gem 'timecop'
-  gem 'shoulda-matchers'
 end
 
 group :development, :test do
