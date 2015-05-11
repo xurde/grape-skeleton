@@ -6,10 +6,6 @@ module API
 
     namespace :users do
 
-      get 'foo' do
-        {foo: 'bar'}
-      end
-
       namespace :auth do
 
         post do

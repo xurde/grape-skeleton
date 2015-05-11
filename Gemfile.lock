@@ -60,6 +60,12 @@ GEM
       rack-accept
       rack-mount
       virtus
+    grape-entity (0.4.5)
+      activesupport
+      multi_json (>= 1.3.2)
+    grape-swagger (0.8.0)
+      grape
+      grape-entity
     hashie (2.0.5)
     i18n (0.6.5)
     json (1.8.0)
@@ -88,6 +94,7 @@ GEM
     rack (1.5.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-cors (0.4.0)
     rack-mount (0.8.3)
       rack (>= 1.0.0)
     rack-test (0.6.2)
@@ -151,10 +158,12 @@ DEPENDENCIES
   devise
   foreman
   grape
+  grape-swagger
   json
   mina
   pry
   pry-nav
+  rack-cors
   rack-test
   racksh
   rake

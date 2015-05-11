@@ -1,7 +1,8 @@
 # External dependencies
-require 'grape'
 require 'json'
 require 'active_record'
+require 'grape'
+require 'grape-swagger'
 
 require 'api/users_endpoint'
 
@@ -45,6 +46,8 @@ module API
 
     before do
       # error!("401 Unauthorized", 401) unless authenticated
+      header['Access-Control-Allow-Origin'] = '*'
+      header['Access-Control-Request-Method'] = '*'
     end
 
     get '/' do
@@ -64,9 +67,20 @@ module API
       end
     end
 
+    params do
+      optional :foo, type: String
+    end
+    get 'foo' do
+      {foo: params[:foo]}
+    end
+
+
     # Mount other api modules here
 
     mount API::UsersEndpoint
+
+
+    add_swagger_documentation :format => :json
 
   end
 
