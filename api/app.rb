@@ -45,16 +45,18 @@ module API
     end
 
     before do
-      # error!("401 Unauthorized", 401) unless authenticated
       header['Access-Control-Allow-Origin'] = '*'
       header['Access-Control-Request-Method'] = '*'
+      header['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT, PATCH, DELETE'
+      header['Access-Control-Allow-Headers'] = 'true'
     end
 
+    desc "Lists API routes in json"
     get '/' do
       {routes: API::App.routes.map}
     end
 
-
+    desc "Returns ok status if reached"
     get 'status' do
       {status: 'ok'}
     end
@@ -80,7 +82,13 @@ module API
     mount API::UsersEndpoint
 
 
-    add_swagger_documentation :format => :json
+    add_swagger_documentation format: :json,
+                              version: 'v0',
+                              mount_path: 'swagger',
+                              info: {
+                                title: 'Skeleton Grape API + Swagger'
+                              }
+
 
   end
 

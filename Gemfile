@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
+
 # Basic service gems
 gem 'json'                          # JSON
 gem 'activerecord', '~> 4.0.0'      # Database
