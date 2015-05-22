@@ -15,9 +15,10 @@ module API
     HTTP_STATUS_CODES = Rack::Utils::HTTP_STATUS_CODES.invert
 
     format :json
+    prefix 'api'
     version 'v0', :using => :path
     content_type :json, CONTENT_TYPE
-    prefix 'api'
+
 
     rescue_from Grape::Exceptions::Validation do |e|
       Rack::Response.new({ message: e.message }.to_json, 412, RACK_CONTENT_TYPE_HEADER).finish
@@ -81,10 +82,10 @@ module API
 
     mount API::UsersEndpoint
 
-
     add_swagger_documentation format: :json,
-                              version: 'v0',
+                              api_version: 'v0',
                               mount_path: 'swagger',
+                              # base_path: "http://#{Rack::Request.host_with_port}/api/v0/",
                               info: {
                                 title: 'Skeleton Grape API + Swagger'
                               }

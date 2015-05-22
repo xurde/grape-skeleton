@@ -4,14 +4,17 @@ ruby '2.2.0'
 
 # Basic service gems
 gem 'json'                          # JSON
-gem 'activerecord', '~> 4.0.0'      # Database
 gem 'roar'                          # Representer
 gem 'foreman'                       # Process management
 gem 'rake'
 gem 'racksh'
-gem 'sqlite3'
 gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'sprockets'
+
+# DB
+gem 'sqlite3'
+gem 'activerecord', '~> 4.0.0'      # Database
 
 # Auth
 gem 'warden'
