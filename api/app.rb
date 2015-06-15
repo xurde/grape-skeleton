@@ -4,7 +4,7 @@ require 'active_record'
 require 'grape'
 require 'grape-swagger'
 
-require 'api/users_endpoint'
+require 'api/foos_endpoint'
 
 module API
 
@@ -52,40 +52,30 @@ module API
       header['Access-Control-Allow-Headers'] = 'true'
     end
 
-    desc "Lists API routes in json"
-    get '/' do
+    get '/', desc: "Lists API routes in json" do
       {routes: API::App.routes.map}
     end
 
     desc "Returns ok status if reached"
-    get 'status' do
+    get '/status' do
       {status: 'ok'}
     end
 
-    desc "Just ping"
-    resource :ping do
+    namespace :ping, desc: "Just an http ping", swagger: {desc: "MIERDA", name: 'mierda'} do
       desc "Returns Pong"
       get '/' do
         {pong: true}
       end
     end
 
-    params do
-      optional :foo, type: String
-    end
-    get 'foo' do
-      {foo: params[:foo]}
-    end
-
-
     # Mount other api modules here
-
-    mount API::UsersEndpoint
+    mount API::FoosEndpoint
 
     add_swagger_documentation format: :json,
                               api_version: 'v0',
                               mount_path: 'swagger',
-                              # base_path: "http://#{Rack::Request.host_with_port}/api/v0/",
+                              hide_format: true,
+                              hide_documentation_path: true,
                               info: {
                                 title: 'Skeleton Grape API + Swagger'
                               }
