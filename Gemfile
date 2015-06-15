@@ -13,7 +13,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'sprockets'
 
 # DB
-gem 'sqlite3'
 gem 'activerecord', '~> 4.0.0'      # Database
 
 # Auth
@@ -38,7 +37,12 @@ group :test do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'pry'
   gem 'pry-nav'
   gem 'awesome_print'
+end
+
+group :production do
+  gem 'pg'
 end
