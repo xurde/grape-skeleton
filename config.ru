@@ -1,3 +1,4 @@
+$APP_ROOT = File.expand_path(File.dirname(__FILE__))
 require File.join(File.dirname(__FILE__), 'init')
 
 use Rack::CommonLogger, $logger
@@ -14,15 +15,14 @@ use Rack::Cors do
 end
 
 require 'sprockets'
-project_root = File.expand_path(File.dirname(__FILE__))
-assets = Sprockets::Environment.new(project_root) do |env|
+assets = Sprockets::Environment.new($APP_ROOT) do |env|
   env.logger = Logger.new(STDOUT)
 end
 
-assets.append_path(File.join(project_root, 'assets'))
-assets.append_path(File.join(project_root, 'assets', 'swagger-ui'))
-assets.append_path(File.join(project_root, 'assets', 'javascripts'))
-assets.append_path(File.join(project_root, 'assets', 'stylesheets'))
+assets.append_path(File.join($APP_ROOT, 'assets'))
+assets.append_path(File.join($APP_ROOT, 'assets', 'swagger-ui'))
+assets.append_path(File.join($APP_ROOT, 'assets', 'javascripts'))
+assets.append_path(File.join($APP_ROOT, 'assets', 'stylesheets'))
 
 map "/assets" do
   run assets
