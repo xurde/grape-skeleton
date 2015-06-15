@@ -1,5 +1,7 @@
+APP_PATH = File.dirname(__FILE__)
+
 def load_path(path)
-  File.join(File.dirname(__FILE__), path)
+  File.join(APP_PATH, path)
 end
 
 RACK_ENV = ENV['RACK_ENV'] || 'development'
@@ -13,7 +15,10 @@ require 'middleware/logger'
 require 'logger'
 
 class ::Logger; alias_method :write, :<<; end # for Rack::CommonLogger
-$logger = ::Logger.new("log/#{RACK_ENV}.log")
+
+$LOG_FILE = "#{APP_PATH}/log/#{RACK_ENV}.log"
+puts "Initializing logfile  for further loggin in: #{$LOG_FILE}"
+$logger = ::Logger.new($LOG_FILE)
 
 puts "Starting environment: #{RACK_ENV}..."
 @config = YAML.load_file('config/database.yml')[RACK_ENV]
