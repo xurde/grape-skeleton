@@ -13,7 +13,9 @@ require 'middleware/logger'
 require 'logger'
 
 class ::Logger; alias_method :write, :<<; end # for Rack::CommonLogger
-$logger = ::Logger.new("log/#{RACK_ENV}.log")
+$LOG_FILE = "#{$LOAD_PATH}/log/#{RACK_ENV}.log"
+puts "Initializing logfile  for further loggin in: #{$LOG_FILE}"
+$logger = ::Logger.new($LOG_FILE)
 
 puts "Starting environment: #{RACK_ENV}..."
 @config = YAML.load_file('config/database.yml')[RACK_ENV]
