@@ -11,6 +11,7 @@ gem 'racksh'
 gem 'thin'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'sprockets'
+gem 'sinatra'
 
 # DB
 gem 'activerecord', '~> 4.0.0'      # Database
@@ -19,7 +20,7 @@ gem 'activerecord', '~> 4.0.0'      # Database
 gem 'warden'
 gem 'devise'
 
-# Grape Framework
+# API Framework
 gem 'grape'
 gem 'grape-swagger'
 

@@ -15,8 +15,8 @@ module API
     HTTP_STATUS_CODES = Rack::Utils::HTTP_STATUS_CODES.invert
 
     format :json
-    prefix 'api'
     version 'v0', :using => :path
+    prefix 'api'
     content_type :json, CONTENT_TYPE
 
 
