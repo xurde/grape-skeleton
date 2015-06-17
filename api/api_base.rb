@@ -52,7 +52,7 @@ module API
     end
 
     get '/', desc: "Lists API routes in json" do
-      {routes: API::App.routes.map}
+      {routes: API::Base.routes.map}
     end
 
     desc "Returns ok status if reached"
