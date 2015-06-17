@@ -77,7 +77,7 @@ module API
                               hide_format: true,
                               hide_documentation_path: true,
                               info: {
-                                title: 'Skeleton Grape API + Swagger'
+                                title: 'Grape API Skeleton Docs'
                               }
 
 
