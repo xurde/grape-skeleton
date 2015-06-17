@@ -1,5 +1,5 @@
-# grape-skeleton
-Grape backend skeleton over Rack + Swagger docs + Sprockets to serve assets
+# Grape API Skeleton
+Grape API backend skeleton over Rack + Swagger docs + Sprockets for assets
 
 See a demo [deployed at Heroku](https://grape-skeleton.herokuapp.com/docs/)
 
