@@ -12,7 +12,7 @@ require 'logger'
 
 class ::Logger; alias_method :write, :<<; end # for Rack::CommonLogger
 
-$LOG_FILE = "#{$APP_ROOT}/log/#{$RACK_ENV}.log"
+$LOG_FILE = "./log/#{$RACK_ENV}.log"
 puts "Initializing logfile  for further loggin in: #{$LOG_FILE}"
 $logger = ::Logger.new($LOG_FILE)
 
