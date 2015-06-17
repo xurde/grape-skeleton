@@ -18,14 +18,8 @@ use Rack::Cors do
   end
 end
 
-require 'sprockets'
-assets = Sprockets::Environment.new($APP_ROOT) do |env|
-  env.logger = Logger.new(STDOUT)
-end
-assets.append_path(File.join($APP_ROOT, 'assets'))
-
-map "/assets" do
-  run assets
+map "/api" do
+  run API::Base
 end
 
 map "/docs" do
@@ -33,11 +27,15 @@ map "/docs" do
   :root => "./public/docs/",
   :index => 'index.html',
   :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
-
   run Rack::Static
   run Rack::Directory.new("./public/docs/")
 end
 
 map "/" do
-  run API::App
+  use Rack::Static,
+  :root => "./public/",
+  :index => 'index.html',
+  :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
+  run Rack::Static
+  run Rack::Directory.new("./public/")
 end

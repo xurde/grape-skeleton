@@ -8,7 +8,7 @@ require 'api/foos_endpoint'
 
 module API
 
-  class App < Grape::API
+  class Base < Grape::API
 
     CONTENT_TYPE = "application/hal+json"
     RACK_CONTENT_TYPE_HEADER = {"content-type" => CONTENT_TYPE}
@@ -16,7 +16,6 @@ module API
 
     format :json
     version 'v0', :using => :path
-    prefix 'api'
     content_type :json, CONTENT_TYPE
 
 
@@ -73,6 +72,7 @@ module API
 
     add_swagger_documentation format: :json,
                               api_version: 'v0',
+                              base_path: '/api',
                               mount_path: 'swagger',
                               hide_format: true,
                               hide_documentation_path: true,
